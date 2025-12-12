@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #ffcaf0, #ffd6ff, #c9e4ff, #ffe8b2);
+    background-size: 400% 400%;
+    animation: bgAnimation 12s ease infinite;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+@keyframes bgAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+
+.main-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+/* ---------------------------------------
+   FLIP CARD (BIGGER & CLEANER)
+----------------------------------------*/
+.card {
+    width: 420px;
+    height: 520px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: 1.2s;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: rotateY(180deg);
+}
+
+.outside, .inside {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    padding: 25px;
+    backface-visibility: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.outside {
+    background: #fff7e6;
+    text-align: center;
+}
+
+.outside h1 {
+    font-size: 3rem;
+    color: salmon;
+    margin-bottom: 25px;
+}
+
+.outside h3 {
+    font-size: 1.3rem;
+    margin-top: 15px;
+}
+
+.inside {
+    background: #ffe76a;
+    transform: rotateY(180deg);
+    text-align: center;
+}
+
+.inside img {
+    width: 200px;
+    margin-top: 30px;
+}
+
+.inside h3 {
+    font-size: 1.3rem;
+    margin-top: 25px;
+}
+
+
+.frames-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    transform: scale(1.15);
+}
+
+/* RAINBOW SHIMMER */
+.frame {
+    position: relative;
+    width: 450px;
+    background: rgba(255,255,255,0.94);
+    padding: 20px;
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+    z-index: 1;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: 0.4s ease;
+    animation: floatFrame 4s ease-in-out infinite;
+}
+
+.frame:hover {
+    transform: scale(1.06);
+    box-shadow: 0 18px 40px rgba(255,200,255,0.9);
+}
+
+
+.frame::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 22px;
+    padding: 3px;
+    background: linear-gradient(
+        130deg,
+        #ff0000,
+        #ff7a00,
+        #ffee00,
+        #00ff6a,
+        #00c3ff,
+        #8a00ff,
+        #ff00c8,
+        #ff0000
+    );
+    background-size: 300% 300%;
+    z-index: -1;
+
+    animation: rainbowShimmer 6s linear infinite;
+}
+
+.frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 19px;
+    background: rgba(255,255,255,0.95);
+    z-index: -1;
+}
+
+/* Floating animation */
+@keyframes floatFrame {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Rainbow shimmer movement */
+@keyframes rainbowShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Frame Image */
+.frame img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: 0.3s ease;
+}
+
+.frame:hover img {
+    transform: scale(1.12);
+}
+
+/* Frame Text */
+.frame p {
+    font-size: 22px;
+    font-weight: 600;
+}
